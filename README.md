@@ -1,0 +1,54 @@
+= FSL Community BSP
+
+To get the BSP you need to have `repo` installed and use it as:
+
+Install the `repo` utility:
+
+[source,console]
+$: mkdir ~/bin
+$: curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+$: chmod a+x ~/bin/repo
+
+Download the BSP source:
+
+[source,console]
+$: PATH=${PATH}:~/bin
+$: mkdir fsl-community-bsp
+$: cd fsl-community-bsp
+$: repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b dunfell
+$: repo sync
+
+At the end of the commands you have every metadata you need to start work with.
+
+To start a simple image build:
+
+[source,console]
+$: source ./setup-environment build
+$: bitbake core-image-minimal
+
+You can use any directory to host your build.
+
+The source code is checked out at `fsl-community-bsp/sources`.
+
+== Contributing
+
+To contribute to this layer you should send the patches via pull requests.
+
+Source code::
+    https://github.com/Freescale/fsl-community-bsp-platform
+
+== Using Development and Testing Branches
+
+Replace the `repo init` command above with one of the following:
+
+master:: For developers
++
+[source,console]
+$: repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b master
+
+master-next:: For intrepid developers and testers
++
+Patches are typically merged into master-next and then are merged into master after a testing and comment period. It's possible that master-next has something you want or need. But it's also possible that using master-next breaks something that was working before. Use with caution.
+
+[source,console]
+$: repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b master-next
